@@ -8,11 +8,6 @@ use Barryvdh\DomPDF\Facade as PDF;
 
 class FacturacionController extends Controller
 {
-
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
     public function index(){
         $facturacion= Facturacion::all();
         return view('facturacion.index')->with('facturacion',$facturacion);
@@ -58,5 +53,11 @@ class FacturacionController extends Controller
         $facturacion = Facturacion::find($id);        
         $facturacion->delete();
         return redirect('/facturacion');
+    }
+
+    public function PDF_UNICO($id_serie){
+        $facturacion= Facturacion::find($id_serie);
+        return PDF::loadView('PDF.reporte_unico', compact('facturacion'))
+                    ->stream();
     }
 }

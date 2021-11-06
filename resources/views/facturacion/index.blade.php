@@ -30,7 +30,7 @@
                     <td>{{$facturacion->Fecha}}</td>
                     <td>
                         <form class="eliminar" action="{{ route('facturacion.destroy',$facturacion->id) }}" method="POST">
-                            <a href="{{ route('VistaPDF') }}" target="_blank" class="btn btn-primary mb-3">PDF</a>
+                            <a href="{{ route('VistaPDF_UNICO', ['id_serie' => $facturacion->id]) }}" target="_blank" class="btn btn-primary mb-3">PDF</a>
                             <a href="/facturacion/{{$facturacion->id}}/edit" class="btn btn-info">Editar</a>         
                                 @csrf
                                 @method('DELETE')
