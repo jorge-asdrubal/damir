@@ -12,16 +12,11 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('auth.login');
 });
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard.index');
-// })->name('dashboard');
 Route::get('/dashboard','App\Http\Controllers\dasController@index');
-
 
 Route::get('/dashboard/crud', function () {
     return view('crud.index');
@@ -33,3 +28,5 @@ Route::get('/dashboard/crud/create', function () {
 
 Route::resource('facturacion','App\Http\Controllers\FacturacionController');
 Route::get('/PDF/reporte','App\Http\Controllers\FacturacionController@PDF')->name('VistaPDF');
+
+Route::get('/factura/{id_serie}', 'App\Http\Controllers\FacturacionController@PDF_UNICO')->name('VistaPDF_UNICO');
